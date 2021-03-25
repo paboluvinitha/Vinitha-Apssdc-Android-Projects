@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <Button
+        android:text="ExplictIntent"
+        android:id="@+id/d8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="google"
+        android:onClick="browser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:hint="Enter a message"
+        android:id="@+id/tv"
+        android:textColorHint="#3F51B5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_gravity="center"
+        android:background="@drawable/ic_baseline_tag_faces_24"
+        android:onClick="msgdata"
+        android:layout_width="25dp"
+        android:layout_height="30dp"/>
+
+
+
+</LinearLayout>
