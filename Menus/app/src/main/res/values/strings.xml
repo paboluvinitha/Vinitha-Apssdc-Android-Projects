@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Menus</string>
+    <string-array name="Korean_Drama">
+        <item>Crash landing On You</item>
+        <item>True Beauty</item>
+        <item>18 Again</item>
+        <item>Tale Of Nine Tailed</item>
+        <item>PentHouse</item>
+        <item>The Heirs</item>
+    </string-array>
+</resources>
