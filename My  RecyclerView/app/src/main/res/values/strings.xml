@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">My RecyclerView</string>
+    <string-array name="titles">
+        <item>18 Again</item>
+        <item>Crash Landing on you</item>
+        <item>Extraordinary you</item>
+        <item>True Beauty</item>
+        <item>Mr Queen</item>
+        <item>Vincenzo</item>
+        <item>DOTS</item>
+        <item>The Heirs</item>
+    </string-array>
+    <string-array name="subtitles">
+        <item>Busan</item>
+        <item>Itaewon</item>
+        <item>Jeju</item>
+        <item>seoul</item>
+        <item>Josean</item>
+        <item>Gaganum</item>
+        <item>south Korea</item>
+        <item>Namsan tower</item>
+    </string-array>
+</resources>
