@@ -12,12 +12,12 @@
     </string-array>
     <string-array name="subtitles">
         <item>Busan</item>
-        <item>Itaewon</item>
+        <item>NorthKorea</item>
         <item>Jeju</item>
         <item>seoul</item>
         <item>Josean</item>
         <item>Gaganum</item>
-        <item>south Korea</item>
-        <item>Namsan tower</item>
+        <item>southKorea</item>
+        <item>NamsanTower</item>
     </string-array>
 </resources>

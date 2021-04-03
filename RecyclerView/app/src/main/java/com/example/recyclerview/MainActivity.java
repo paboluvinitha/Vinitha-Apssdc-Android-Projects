@@ -17,18 +17,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        rec=findViewById(R.id.tv);
+        rec=findViewById(R.id.rv);
         names=getResources().getStringArray(R.array.titles);
         location=getResources().getStringArray(R.array.subtitles);
         poster=new int[]{
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_foreground,
-                R.drawable.ic_launcher_background};
+                R.drawable.again,
+                R.drawable.crash,
+                R.drawable.extra,
+                R.drawable.beauty,
+                R.drawable.mr,
+                R.drawable.vin,
+                R.drawable.dot,
+                R.drawable.the};
         adapter=new MyAdapter(this,names,location,poster);
         rec.setLayoutManager(new LinearLayoutManager(this));
         rec.setAdapter(adapter);

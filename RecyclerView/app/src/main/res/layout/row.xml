@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,8 +17,7 @@
         android:textSize="30sp"
         android:layout_marginTop="10dp"
         android:id="@+id/tv_title"
-        android:textColor="@color/cardview_light_background"
-        />
+        android:textColor="@color/purple_200"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,9 +26,6 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/tv_subtitle"
-        android:textColor="@color/design_default_color_on_primary"
-        />
-
-
+        android:textColor="@color/teal_200"/>
 
 </LinearLayout>
