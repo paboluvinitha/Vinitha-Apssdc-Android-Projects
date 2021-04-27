@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Recycleview</string>
+    <string-array name="titles">
+        <item>AA </item>
+        <item>Bahubali</item>
+        <item>Chirutha</item>
+        <item>Dookudu</item>
+        <item>Eega</item>
+        <item>Fidha</item>
+        <item>GabbarSing</item>
+        <item>Hello</item>
+        <item>I</item>
+        <item>Jayam</item>
+
+
+    </string-array>
+    <string-array name="subtitle">
+        <item>Tri-Vikram</item>
+        <item>SS Rajamouli</item>
+        <item>Puri Jaghanadh</item>
+        <item>Srinu Vitla</item>
+        <item>SS Rajamouli</item>
+        <item>Sekar Kamala</item>
+        <item>Harish Shankar</item>
+        <item>Vikram Kumar</item>
+        <item>Shankar</item>
+        <item>Teja</item>
+
+    </string-array>
+</resources>
