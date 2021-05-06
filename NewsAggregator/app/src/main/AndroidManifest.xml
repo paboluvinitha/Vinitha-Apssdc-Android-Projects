@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsAggregator">
-        <activity android:name=".HomePageActivity"></activity>
+        <activity android:name=".EmptyRecyclerView"></activity>
+        <activity android:name=".Settings" />
+        <activity android:name=".HomePageActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
