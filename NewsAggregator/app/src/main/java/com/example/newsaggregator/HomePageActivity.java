@@ -1,73 +1,120 @@
 package com.example.newsaggregator;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
+import android.app.Dialog;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabLayout;
+import com.example.newsaggregator.model.Articles;
+import com.example.newsaggregator.model.News;
 
-public class HomePageActivity extends AppCompatActivity  {
-    private ViewPager viewPager;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class HomePageActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    SwipeRefreshLayout swipeRefreshLayout;
+    EditText et;
+    Button btnSearch;
+    Dialog dialog;
+    final String API_KEY = "fcadc1bcfd3a498f94373c7c9e3f60e4";
+    Adapter adapter;
+    List<Articles> articles = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        swipeRefreshLayout = findViewById(R.id.swiperefresh);
+        recyclerView = findViewById(R.id.recyclerView);
+        et = findViewById(R.id.et);
+        btnSearch = findViewById(R.id.btnSearch);
+        dialog = new Dialog(HomePageActivity.this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        final String country = getCountry();
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        viewPager = findViewById(R.id.viewpager);
 
-        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                retrieveJson("",country,API_KEY);
+            }
+        });
+        retrieveJson("",country,API_KEY);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        assert navigationView != null;
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!et.getText().toString().equals("")){
+                    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            retrieveJson(et.getText().toString(),country,API_KEY);
+                        }
+                    });
+                    retrieveJson(et.getText().toString(),country,API_KEY);
+                }else{
+                    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            retrieveJson("",country,API_KEY);
+                        }
+                    });
+                    retrieveJson("",country,API_KEY);
+                }
+            }
+        });
     }
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+    public void retrieveJson(String query ,String country, String apiKey){
+
+        swipeRefreshLayout.setRefreshing(true);
+        Call<News> call;
+        if (!et.getText().toString().equals("")){
+            call= ApiClient.getInstance().getApi().getSpecificData(query,apiKey);
+        }else{
+            call= ApiClient.getInstance().getApi().getHeadlines(country,apiKey);
         }
+
+        call.enqueue(new Callback<News>() {
+            @Override
+            public void onResponse(Call<News> call, Response<News> response) {
+                if (response.isSuccessful() && response.body().getArticles() != null){
+                    swipeRefreshLayout.setRefreshing(false);
+                    articles.clear();
+                    articles = response.body().getArticles();
+                    adapter = new Adapter(HomePageActivity.this,articles);
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<News> call, Throwable t) {
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(HomePageActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+    public String getCountry(){
+        Locale locale = Locale.getDefault();
+        String country = locale.getCountry();
+        return country.toLowerCase();
+    }
 
-    @Override
-    // Initialize the contents of the Activity's options menu
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the Options Menu we specified in XML
-        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
-    }
-    @Override
-    // This method is called whenever an item in the options menu is selected.
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Intent settingsIntent = new Intent(getBaseContext(), Settings.class);
-            startActivity(settingsIntent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 
 }
+
