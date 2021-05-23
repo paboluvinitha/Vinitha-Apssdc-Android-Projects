@@ -30,6 +30,7 @@ public class Articles {
     @SerializedName("publishedAt")
     @Expose
     private String publishedAt;
+    private Boolean articleSaved = false;
 
     public Source getSource() {
         return source;
@@ -71,6 +72,13 @@ public class Articles {
         this.url = url;
     }
 
+    public void articleSaved() {
+        this.articleSaved = articleSaved;
+    }
+    public void setArticleSaved(Boolean articleSaved) {
+        this.articleSaved = articleSaved;
+    }
+
     public String getUrlToImage() {
         return urlToImage;
     }
@@ -85,5 +93,9 @@ public class Articles {
 
     public void setPublishedAt(String publishedAt) {
         this.publishedAt = publishedAt;
+    }
+
+    public Boolean getArticleSaved() {
+        return articleSaved;
     }
 }

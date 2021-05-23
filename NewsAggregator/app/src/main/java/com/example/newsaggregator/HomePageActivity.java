@@ -1,12 +1,16 @@
 package com.example.newsaggregator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,7 +82,31 @@ public class HomePageActivity extends AppCompatActivity {
         });
     }
 
-    public void retrieveJson(String query ,String country, String apiKey){
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.favitems,menu);
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.fav:
+                Intent i=new Intent(HomePageActivity.this,FavouriteActivity.class);
+                startActivity(i);
+                break;
+            case R.id.about:
+                Toast.makeText(HomePageActivity.this,"Clicked to Batch 32",Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void retrieveJson(String query , String country, String apiKey){
 
         swipeRefreshLayout.setRefreshing(true);
         Call<News> call;
@@ -113,6 +141,7 @@ public class HomePageActivity extends AppCompatActivity {
         String country = locale.getCountry();
         return country.toLowerCase();
     }
+
 
 
 
