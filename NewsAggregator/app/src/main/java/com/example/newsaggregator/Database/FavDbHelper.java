@@ -37,7 +37,7 @@ public class FavDbHelper  extends SQLiteOpenHelper {
     public static final String col_1="name";
     public static final String col_2="age";
     public static final String query="create table "+db_table+"("+col_0+" integer primary key autoincrement,"+col_1+" text unique,"+col_2+" integer);";
-   /* private Gson gson;*/
+    /* private Gson gson;*/
     public FavDbHelper(@Nullable Context context ) {
         super(context, dbname, null, db_version);
     }

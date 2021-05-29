@@ -98,9 +98,7 @@ public class HomePageActivity extends AppCompatActivity {
                 Intent i=new Intent(HomePageActivity.this,FavouriteActivity.class);
                 startActivity(i);
                 break;
-            case R.id.about:
-                Toast.makeText(HomePageActivity.this,"Clicked to Batch 32",Toast.LENGTH_SHORT).show();
-                break;
+
 
         }
         return super.onOptionsItemSelected(item);

@@ -29,7 +29,7 @@ public class DetailedActivity extends AppCompatActivity {
     WebView webView;
     ProgressBar loader;
     CheckBox checkBox;
-    String title,desc;
+    String title,source;
     FavDbHelper favDbHelper;
 
 
@@ -50,9 +50,9 @@ public class DetailedActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
          title = intent.getStringExtra("title");
-        String source = intent.getStringExtra("source");
+        source = intent.getStringExtra("source");
         String time = intent.getStringExtra("time");
-        desc = intent.getStringExtra("desc");
+        String desc = intent.getStringExtra("desc");
         String imageUrl = intent.getStringExtra("imageUrl");
         String url = intent.getStringExtra("url");
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -61,7 +61,7 @@ public class DetailedActivity extends AppCompatActivity {
                 if(isChecked){
                     ContentValues cv=new ContentValues();
                     cv.put(favDbHelper.col_1,title);
-                    cv.put(favDbHelper.col_2,desc);
+                    cv.put(favDbHelper.col_2,source);
                     long l=favDbHelper.insertValues(cv);
                     Toast.makeText(DetailedActivity.this,"Added to Favourites",Toast.LENGTH_SHORT).show();
 

@@ -8,6 +8,10 @@ import android.database.Cursor;
 import android.os.Bundle;
 
 import com.example.newsaggregator.Database.FavDbHelper;
+import com.example.newsaggregator.model.Articles;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FavouriteActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -22,7 +26,7 @@ public class FavouriteActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recycler_view_favourite);
         favDbHelper=new FavDbHelper(this);
         Cursor cursor=favDbHelper.retrieveValues();
-       /* StringBuilder sb=new StringBuilder();*/
+        /* StringBuilder sb=new StringBuilder();*/
         while (cursor.moveToNext()){
 
             String sb=cursor.getString(1);

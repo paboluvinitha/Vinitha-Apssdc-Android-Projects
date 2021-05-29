@@ -4,6 +4,4 @@
 
     <item android:title="Favourites"
         android:id="@+id/fav"/>
-    <item android:title="AboutUs"
-        android:id="@+id/about"/>
 </menu>
